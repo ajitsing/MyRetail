@@ -20,4 +20,5 @@ public class ItemTable {
             ")";
 
     public static final String[] ALL_COLUMNS = {ID, NAME, IMAGE, DETAIL, CATEGORY_ID, PRICE};
+    public static final String[] COLUMNS = {ID, NAME};
 }

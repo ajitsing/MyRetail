@@ -136,6 +136,10 @@ public class DataBaseHelper {
         return items;
     }
 
+    public Cursor getItemsCursor(Long categoryId) {
+        return database.query(ItemTable.TABLE_NAME, ItemTable.ALL_COLUMNS, ItemTable.CATEGORY_ID + "=" + categoryId.intValue(), null, null, null, null, null);
+    }
+
     private class DataBaseOpenHelper extends SQLiteOpenHelper {
 
         DataBaseOpenHelper(Context context) {

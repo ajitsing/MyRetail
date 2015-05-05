@@ -1,22 +1,26 @@
-package com.example.ajitsingh.navigationdrawer;
+package com.example.ajitsingh.navigationdrawer.activity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.ajitsingh.navigationdrawer.R;
 import com.example.ajitsingh.navigationdrawer.adapter.CategoryAdapter;
 import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
 import com.example.ajitsingh.navigationdrawer.tables.CategoryTable;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -45,6 +49,16 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 drawerList.setItemChecked(position, true);
                 setDrawerTitle(dataBaseHelper.getCategoryName(id));
+                drawerLayout.closeDrawer(GravityCompat.START);
+
+                if (getSupportFragmentManager().findFragmentById(android.R.id.content) == null) {
+                    ViewPagerFragment fragment = new ViewPagerFragment();
+                    fragment.setCategory(id);
+
+                    getSupportFragmentManager().beginTransaction()
+                            .add(android.R.id.content, fragment).commit();
+                }
+
             }
         });
 
