@@ -3,11 +3,4 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string-array name="rooms">
-        <item>room1</item>
-        <item>room2</item>
-        <item>room3</item>
-        <item>room4</item>
-        <item>room5</item>
-    </string-array>
 </resources>

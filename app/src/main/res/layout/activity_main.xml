@@ -15,7 +15,8 @@
         android:id="@+id/drawer_list"
         android:layout_width="240dp"
         android:layout_height="match_parent"
-        android:entries="@array/rooms"
+        android:background="#FF9811"
+        android:divider="@null"
         android:layout_gravity="left">
     </ListView>
 
