@@ -2,57 +2,53 @@ package com.example.ajitsingh.navigationdrawer;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.ajitsingh.navigationdrawer.adapter.CategoryAdapter;
+import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
+import com.example.ajitsingh.navigationdrawer.tables.CategoryTable;
 
 
 public class MainActivity extends Activity {
     private DrawerLayout drawerLayout;
     private ListView drawerList;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private DataBaseHelper dataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        dataBaseHelper = DataBaseHelper.getInstance(this);
+        dataBaseHelper.setUpDB();
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerList = (ListView)findViewById(R.id.drawer_list);
 
-        final String[] rooms = {"room1", "room2", "room3"};
-        drawerList.setAdapter(new ArrayAdapter<String>(
-                this, R.layout.navigation_list_row, R.id.navigation_list_row, rooms
-        ));
+        Cursor categoriesCursor = dataBaseHelper.getCategoriesCursor();
+
+        String[] from = {CategoryTable.NAME};
+        int[] to = {R.id.navigation_list_row};
+
+        CategoryAdapter adapter = new CategoryAdapter(this, R.layout.navigation_list_row, categoriesCursor, from, to);
+        drawerList.setAdapter(adapter);
 
         drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), rooms[position] + " is clicked", Toast.LENGTH_SHORT).show();
                 drawerList.setItemChecked(position, true);
-                setDrawerTitle(rooms[position]);
+                setDrawerTitle(dataBaseHelper.getCategoryName(id));
             }
         });
 
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.app_name, R.string.action_settings){
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                Toast.makeText(getApplicationContext(), "drawer opened", Toast.LENGTH_SHORT).show();
-                super.onDrawerOpened(drawerView);
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                Toast.makeText(getApplicationContext(), "drawer closed", Toast.LENGTH_SHORT).show();
-                super.onDrawerClosed(drawerView);
-            }
-        };
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.app_name, R.string.action_settings);
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         //make action bar clickable
