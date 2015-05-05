@@ -12,11 +12,12 @@ import android.view.ViewGroup;
 
 import com.example.ajitsingh.navigationdrawer.R;
 import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
-import com.example.ajitsingh.navigationdrawer.tables.ItemTable;
+
+import static com.example.ajitsingh.navigationdrawer.tables.ItemTable.*;
 
 public class ViewPagerFragment extends Fragment {
     private ViewPager mPager;
-    private CursorPagerAdapter<ProductFragment> pagerAdapter;
+    private CursorPagerAdapter pagerAdapter;
     private DataBaseHelper dataBaseHelper;
     private long category;
 
@@ -29,10 +30,7 @@ public class ViewPagerFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         dataBaseHelper = DataBaseHelper.getInstance(this.getActivity());
-        pagerAdapter = new CursorPagerAdapter<ProductFragment>(getFragmentManager(),
-                ProductFragment.class, ItemTable.COLUMNS,
-                dataBaseHelper.getItemsCursor(this.category));
-
+        pagerAdapter = new CursorPagerAdapter(getFragmentManager(), dataBaseHelper.getItemsCursor(this.category));
         mPager = (ViewPager) getView().findViewById(R.id.pager);
         mPager.setAdapter(pagerAdapter);
     }
@@ -41,36 +39,38 @@ public class ViewPagerFragment extends Fragment {
         this.category = category;
     }
 
-    public static class CursorPagerAdapter<F extends Fragment> extends FragmentStatePagerAdapter {
-        private final Class<F> fragmentClass;
-        private final String[] projection;
+    public static class CursorPagerAdapter extends FragmentStatePagerAdapter {
         private Cursor cursor;
 
-        public CursorPagerAdapter(FragmentManager fm, Class<F> fragmentClass, String[] projection, Cursor cursor) {
+        public CursorPagerAdapter(FragmentManager fm, Cursor cursor) {
             super(fm);
-            this.fragmentClass = fragmentClass;
-            this.projection = projection;
             this.cursor = cursor;
         }
 
         @Override
-        public F getItem(int position) {
+        public ProductFragment getItem(int position) {
             if (cursor == null)
                 return null;
 
             cursor.moveToPosition(position);
-            F frag;
-            try {
-                frag = fragmentClass.newInstance();
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            ProductFragment productFragment = new ProductFragment();
+
+            String name = cursor.getString(cursor.getColumnIndex(NAME));
+            byte[] image = cursor.getBlob(cursor.getColumnIndex(IMAGE));
+            Long categoryId = cursor.getLong(cursor.getColumnIndex(CATEGORY_ID));
+            String detail = cursor.getString(cursor.getColumnIndex(DETAIL));
+            String price = cursor.getString(cursor.getColumnIndex(PRICE));
+
             Bundle args = new Bundle();
-            for (int i = 0; i < projection.length; ++i) {
-                args.putString(projection[i], cursor.getString(i));
-            }
-            frag.setArguments(args);
-            return frag;
+
+            args.putString(NAME, name);
+            args.putString(DETAIL, detail);
+            args.putString(PRICE, price);
+            args.putLong(CATEGORY_ID, categoryId);
+            args.putByteArray(IMAGE, image);
+
+            productFragment.setArguments(args);
+            return productFragment;
         }
 
         @Override

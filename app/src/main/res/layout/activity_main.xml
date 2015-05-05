@@ -11,13 +11,10 @@
         android:id="@+id/main_content">
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/drawer_list"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:background="#FF9811"
-        android:divider="@null"
-        android:layout_gravity="left">
-    </ListView>
+    <fragment android:id="@+id/navigation_drawer"
+        android:layout_width="@dimen/navigation_drawer_width" android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:name="com.example.ajitsingh.navigationdrawer.activity.NavigationDrawerFragment"
+        tools:layout="@layout/fragment_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

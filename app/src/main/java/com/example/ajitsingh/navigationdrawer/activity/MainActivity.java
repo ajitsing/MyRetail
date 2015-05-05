@@ -1,74 +1,43 @@
 package com.example.ajitsingh.navigationdrawer.activity;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.example.ajitsingh.navigationdrawer.R;
-import com.example.ajitsingh.navigationdrawer.adapter.CategoryAdapter;
-import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
-import com.example.ajitsingh.navigationdrawer.tables.CategoryTable;
 
 
 public class MainActivity extends FragmentActivity {
     private DrawerLayout drawerLayout;
-    private ListView drawerList;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    private DataBaseHelper dataBaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dataBaseHelper = DataBaseHelper.getInstance(this);
-        dataBaseHelper.setUpDB();
-
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        drawerList = (ListView)findViewById(R.id.drawer_list);
 
-        Cursor categoriesCursor = dataBaseHelper.getCategoriesCursor();
-
-        String[] from = {CategoryTable.NAME};
-        int[] to = {R.id.navigation_list_row};
-
-        CategoryAdapter adapter = new CategoryAdapter(this, R.layout.navigation_list_row, categoriesCursor, from, to);
-        drawerList.setAdapter(adapter);
-
-        drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.app_name, R.string.action_settings){
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                drawerList.setItemChecked(position, true);
-                setDrawerTitle(dataBaseHelper.getCategoryName(id));
-                drawerLayout.closeDrawer(GravityCompat.START);
-
-                if (getSupportFragmentManager().findFragmentById(android.R.id.content) == null) {
-                    ViewPagerFragment fragment = new ViewPagerFragment();
-                    fragment.setCategory(id);
-
-                    getSupportFragmentManager().beginTransaction()
-                            .add(android.R.id.content, fragment).commit();
-                }
-
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
             }
-        });
-
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.app_name, R.string.action_settings);
-
+        };
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         //make action bar clickable
         getActionBar().setHomeButtonEnabled(true);
         //show drawer icon
         getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
     }
 
     //toggle drawer on click on horizontal bars
@@ -91,10 +60,5 @@ public class MainActivity extends FragmentActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
-    }
-
-    //set title of action bar when an item in the list is clicked
-    private void setDrawerTitle(String room) {
-        getActionBar().setTitle(room);
     }
 }
