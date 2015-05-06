@@ -22,8 +22,8 @@
         android:layout_gravity="center" />
 
         <ImageView
-            android:layout_width="204dp"
-            android:layout_height="239dp"
+            android:layout_width="146dp"
+            android:layout_height="172dp"
             android:id="@+id/imageView"
             android:layout_gravity="center_horizontal|top"
             android:src="@drawable/shopping_cart" />
