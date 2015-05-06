@@ -1,13 +1,13 @@
-package com.example.ajitsingh.navigationdrawer.adapter;
+package com.myretail.adapter;
 
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.ajitsingh.navigationdrawer.activity.ProductFragment;
+import com.myretail.activity.ProductFragment;
 
-import static com.example.ajitsingh.navigationdrawer.tables.ItemTable.*;
+import static com.myretail.tables.ItemTable.*;
 
 public class CursorPagerAdapter extends FragmentStatePagerAdapter {
     private Cursor cursor;

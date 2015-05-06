@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.builder;
+package com.myretail.builder;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.ajitsingh.navigationdrawer.R;
-import com.example.ajitsingh.navigationdrawer.tables.ItemTable;
+import com.myretail.R;
+import com.myretail.tables.ItemTable;
 
 import java.io.ByteArrayOutputStream;
 

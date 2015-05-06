@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.activity;
+package com.myretail.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ajitsingh.navigationdrawer.R;
-import com.example.ajitsingh.navigationdrawer.adapter.CursorPagerAdapter;
-import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
+import com.myretail.R;
+import com.myretail.adapter.CursorPagerAdapter;
+import com.myretail.db_helper.DataBaseHelper;
 
 public class ViewPagerFragment extends Fragment {
     private long category;

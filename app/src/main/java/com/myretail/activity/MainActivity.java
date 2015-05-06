@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.activity;
+package com.myretail.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
-import com.example.ajitsingh.navigationdrawer.R;
-import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
+import com.myretail.R;
+import com.myretail.db_helper.DataBaseHelper;
 
 
 public class MainActivity extends FragmentActivity {

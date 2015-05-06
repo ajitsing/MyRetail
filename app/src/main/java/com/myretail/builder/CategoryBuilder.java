@@ -1,7 +1,7 @@
-package com.example.ajitsingh.navigationdrawer.builder;
+package com.myretail.builder;
 
 import android.database.sqlite.SQLiteDatabase;
-import com.example.ajitsingh.navigationdrawer.tables.CategoryTable;
+import com.myretail.tables.CategoryTable;
 import java.util.ArrayList;
 
 public class CategoryBuilder {

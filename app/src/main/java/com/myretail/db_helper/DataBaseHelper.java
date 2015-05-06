@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.db_helper;
+package com.myretail.db_helper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,19 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.ajitsingh.navigationdrawer.Models.Item;
-import com.example.ajitsingh.navigationdrawer.builder.CategoryBuilder;
-import com.example.ajitsingh.navigationdrawer.builder.ItemBuilder;
-import com.example.ajitsingh.navigationdrawer.tables.CartTable;
-import com.example.ajitsingh.navigationdrawer.tables.CategoryTable;
-import com.example.ajitsingh.navigationdrawer.tables.ItemTable;
+import com.myretail.Models.Item;
+import com.myretail.builder.CategoryBuilder;
+import com.myretail.builder.ItemBuilder;
+import com.myretail.tables.CartTable;
+import com.myretail.tables.CategoryTable;
+import com.myretail.tables.ItemTable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ajitsingh.navigationdrawer.db_helper.DatabaseManager.backupDB;
-import static com.example.ajitsingh.navigationdrawer.db_helper.DatabaseManager.isBackupAvailable;
-import static com.example.ajitsingh.navigationdrawer.db_helper.DatabaseManager.restoreDB;
+import static com.myretail.db_helper.DatabaseManager.backupDB;
+import static com.myretail.db_helper.DatabaseManager.isBackupAvailable;
+import static com.myretail.db_helper.DatabaseManager.restoreDB;
 
 
 public class DataBaseHelper {

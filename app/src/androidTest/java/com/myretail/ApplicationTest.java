@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer;
+package com.myretail;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.Models;
+package com.myretail.Models;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

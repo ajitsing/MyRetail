@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.activity;
+package com.myretail.activity;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.ajitsingh.navigationdrawer.R;
-import com.example.ajitsingh.navigationdrawer.adapter.CategoryAdapter;
-import com.example.ajitsingh.navigationdrawer.db_helper.DataBaseHelper;
-import com.example.ajitsingh.navigationdrawer.tables.CategoryTable;
+import com.myretail.R;
+import com.myretail.adapter.CategoryAdapter;
+import com.myretail.db_helper.DataBaseHelper;
+import com.myretail.tables.CategoryTable;
 
 public class NavigationDrawerFragment extends Fragment {
     private ListView drawerList;

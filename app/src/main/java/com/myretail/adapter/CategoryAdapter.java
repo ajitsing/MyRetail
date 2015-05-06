@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.adapter;
+package com.myretail.adapter;
 
 import android.content.Context;
 import android.database.Cursor;

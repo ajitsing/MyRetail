@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.tables;
+package com.myretail.tables;
 
 public class CategoryTable {
     public static final String TABLE_NAME = "categories";

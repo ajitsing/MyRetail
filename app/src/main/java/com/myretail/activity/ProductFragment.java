@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.activity;
+package com.myretail.activity;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ajitsingh.navigationdrawer.R;
+import com.myretail.R;
 
-import static com.example.ajitsingh.navigationdrawer.tables.ItemTable.*;
+import static com.myretail.tables.ItemTable.*;
 
 public class ProductFragment extends Fragment {
     @Override

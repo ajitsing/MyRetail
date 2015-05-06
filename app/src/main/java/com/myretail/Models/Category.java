@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.Models;
+package com.myretail.Models;
 
 import java.util.List;
 

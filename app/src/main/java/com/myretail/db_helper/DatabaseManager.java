@@ -1,4 +1,4 @@
-package com.example.ajitsingh.navigationdrawer.db_helper;
+package com.myretail.db_helper;
 
 import android.os.Environment;
 import android.util.Log;
