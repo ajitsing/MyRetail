@@ -34,8 +34,6 @@ public class NavigationDrawerFragment extends Fragment {
         drawerList = (ListView) getActivity().findViewById(R.id.drawer_list);
 
         dataBaseHelper = DataBaseHelper.getInstance(getActivity());
-        dataBaseHelper.setUpDB();
-
         Cursor categoriesCursor = dataBaseHelper.getCategoriesCursor();
 
         String[] from = {CategoryTable.NAME};
@@ -63,7 +61,6 @@ public class NavigationDrawerFragment extends Fragment {
         });
     }
 
-    //set title of action bar when an item in the list is clicked
     private void setDrawerTitle(String room) {
         getActivity().getActionBar().setTitle(room);
     }
