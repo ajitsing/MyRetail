@@ -18,6 +18,15 @@ public class CursorPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
+    public CharSequence getPageTitle(int position) {
+        if (cursor == null)
+            return null;
+
+        cursor.moveToPosition(position);
+        return cursor.getString(cursor.getColumnIndex(NAME));
+    }
+
+    @Override
     public ProductFragment getItem(int position) {
         if (cursor == null)
             return null;
