@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffe2e9eb"
     android:orientation="vertical">
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/drawer_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#cccc"
         android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
+        android:divider="#ffc0c7c9"
         android:layout_gravity="left"
-        android:dividerHeight="0dp" />
+        android:dividerHeight="0.1sp" />
 </LinearLayout>

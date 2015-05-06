@@ -4,8 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_width="309dp"
+        android:layout_height="30dp"
+        android:textColor="#ff717171"
         android:id="@+id/navigation_list_row"
-        android:textSize="25dp" />
+        android:textSize="15dp"
+        android:layout_marginLeft="45dp" />
 </LinearLayout>

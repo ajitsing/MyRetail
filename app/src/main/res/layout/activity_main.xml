@@ -8,7 +8,26 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/background_light"
         android:id="@+id/main_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome to MyRetail"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="30dp"
+        android:id="@+id/textView"
+        android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="204dp"
+            android:layout_height="239dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal|top"
+            android:src="@drawable/shopping_cart" />
+
     </FrameLayout>
 
     <fragment android:id="@+id/navigation_drawer"

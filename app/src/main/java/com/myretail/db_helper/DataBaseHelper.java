@@ -44,14 +44,14 @@ public class DataBaseHelper {
 
     public void setUpDB() {
         database = new DataBaseOpenHelper(this.context).getWritableDatabase();
-        if (isBackupAvailable()) {
-            restoreDB();
-        } else {
+//        if (isBackupAvailable()) {
+//            restoreDB();
+//        } else {
             createAndSeedCategoriesTable();
             createAndSeedItemsTable();
             createCartTable();
             backupDB();
-        }
+//        }
     }
 
     public Cursor getCategoriesCursor() {

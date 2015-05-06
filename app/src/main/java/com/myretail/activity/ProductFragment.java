@@ -32,7 +32,7 @@ public class ProductFragment extends Fragment {
 
         itemTextView.setText(itemName);
         detailTextView.setText(detail);
-        priceTextView.setText(price);
+        priceTextView.setText("Price - " + price + " ₹");
         imageView.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
 
         return result;
