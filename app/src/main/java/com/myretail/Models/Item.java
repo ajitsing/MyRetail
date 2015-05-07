@@ -3,8 +3,11 @@ package com.myretail.Models;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
     private BigDecimal price;
     private Long id;
@@ -18,6 +21,9 @@ public class Item {
         this.detail = detail;
         this.image = image;
         this.price = BigDecimal.valueOf(Double.parseDouble(price));
+    }
+
+    public Item() {
     }
 
     public Item(Long id, String name, Long categoryId) {
