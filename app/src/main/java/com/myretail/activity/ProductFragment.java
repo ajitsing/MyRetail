@@ -3,6 +3,7 @@ package com.myretail.activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,13 +28,15 @@ public class ProductFragment extends Fragment {
 
         String itemName = getArguments().getString(NAME);
         String detail = getArguments().getString(DETAIL);
-        byte[] image = getArguments().getByteArray(IMAGE);
+        String image = getArguments().getString(IMAGE);
         String price = getArguments().getString(PRICE);
 
         itemTextView.setText(itemName);
         detailTextView.setText(detail);
         priceTextView.setText("Price - " + price + " ₹");
-        imageView.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
+
+        byte[] bytes = Base64.decode(image, Base64.DEFAULT);
+        imageView.setImageBitmap(BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
 
         return result;
     }

@@ -7,12 +7,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.myretail.Models.Categories;
+import com.myretail.Models.Category;
 import com.myretail.R;
 import com.myretail.adapter.CursorPagerAdapter;
 import com.myretail.db_helper.DataBaseHelper;
+import com.myretail.robospice.request.CategoryRequest;
+import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.CacheManager;
+import com.octo.android.robospice.persistence.DurationInMillis;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 public class ViewPagerFragment extends Fragment {
     private long category;
+    private SpiceManager spiceManager = new SpiceManager(JacksonSpringAndroidSpiceService.class);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -20,12 +30,36 @@ public class ViewPagerFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        spiceManager.start(getActivity());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        spiceManager.shouldStop();
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this.getActivity());
-        CursorPagerAdapter pagerAdapter = new CursorPagerAdapter(getFragmentManager(), dataBaseHelper.getItemsCursor(this.category));
-        ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
-        viewPager.setAdapter(pagerAdapter);
+        CategoryRequest categoryRequest = new CategoryRequest(this.category);
+        spiceManager.execute(categoryRequest, null, DurationInMillis.ONE_HOUR, new RequestListener<Category>(){
+
+            @Override
+            public void onRequestFailure(SpiceException spiceException) {
+
+            }
+
+            @Override
+            public void onRequestSuccess(Category category) {
+                CursorPagerAdapter pagerAdapter = new CursorPagerAdapter(getFragmentManager(), category.getItems());
+                ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
+                viewPager.setAdapter(pagerAdapter);
+            }
+        });
     }
 
     public void setCategory(Long category) {

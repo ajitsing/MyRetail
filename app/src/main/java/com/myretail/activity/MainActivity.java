@@ -8,20 +8,12 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
-import com.myretail.Models.Category;
 import com.myretail.R;
 import com.myretail.db_helper.DataBaseHelper;
-import com.myretail.resource.CategoryResource;
-import com.myretail.robospice.listener.CategoryRequestListener;
-import com.myretail.robospice.request.CategoryRequest;
-import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
-import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.persistence.DurationInMillis;
 
 
 public class MainActivity extends FragmentActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    protected SpiceManager spiceManager = new SpiceManager(JacksonSpringAndroidSpiceService.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +29,6 @@ public class MainActivity extends FragmentActivity {
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        spiceManager.start(this);
-        performRequest();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        spiceManager.shouldStop();
-    }
-
-    private void performRequest() {
-        MainActivity.this.setProgressBarIndeterminateVisibility(true);
-        CategoryRequest categoryRequest = new CategoryRequest(10l);
-        spiceManager.execute(categoryRequest, null, DurationInMillis.ONE_MINUTE, new CategoryRequestListener());
     }
 
     @Override

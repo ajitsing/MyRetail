@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -13,23 +14,10 @@ public class Item {
     private Long id;
     private String name;
     private String detail;
-    private byte[] image;
+    private String image;
     private Long categoryId;
 
-    public Item(Long id, String name, String detail, String price, byte[] image, Long categoryId) {
-        this(id, name, categoryId);
-        this.detail = detail;
-        this.image = image;
-        this.price = BigDecimal.valueOf(Double.parseDouble(price));
-    }
-
     public Item() {
-    }
-
-    public Item(Long id, String name, Long categoryId) {
-        this.id = id;
-        this.name = name;
-        this.categoryId = categoryId;
     }
 
     public Long getId() {
@@ -44,8 +32,8 @@ public class Item {
         return detail;
     }
 
-    public Bitmap getImage() {
-        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    public String getImage() {
+        return image;
     }
 
     public BigDecimal getPrice() {

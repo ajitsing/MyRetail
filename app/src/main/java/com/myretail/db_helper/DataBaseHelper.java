@@ -58,21 +58,21 @@ public class DataBaseHelper {
         return database.rawQuery(CategoryTable.SELECT_QUERY, null);
     }
 
-    public Item getItem(Long id) {
-        Cursor item = database.query(ItemTable.TABLE_NAME, ItemTable.ALL_COLUMNS, ItemTable.ID + "=" + id.intValue(), null, null, null, null, null);
-        if (item == null) return null;
-
-        item.moveToNext();
-        String name = item.getString(item.getColumnIndex(ItemTable.NAME));
-        byte[] image = item.getBlob(item.getColumnIndex(ItemTable.IMAGE));
-        Long categoryId = item.getLong(item.getColumnIndex(ItemTable.CATEGORY_ID));
-        String detail = item.getString(item.getColumnIndex(ItemTable.DETAIL));
-        String price = item.getString(item.getColumnIndex(ItemTable.PRICE));
-
-        item.close();
-
-        return new Item(id, name, detail, price, image, categoryId);
-    }
+//    public Item getItem(Long id) {
+//        Cursor item = database.query(ItemTable.TABLE_NAME, ItemTable.ALL_COLUMNS, ItemTable.ID + "=" + id.intValue(), null, null, null, null, null);
+//        if (item == null) return null;
+//
+//        item.moveToNext();
+//        String name = item.getString(item.getColumnIndex(ItemTable.NAME));
+//        byte[] image = item.getBlob(item.getColumnIndex(ItemTable.IMAGE));
+//        Long categoryId = item.getLong(item.getColumnIndex(ItemTable.CATEGORY_ID));
+//        String detail = item.getString(item.getColumnIndex(ItemTable.DETAIL));
+//        String price = item.getString(item.getColumnIndex(ItemTable.PRICE));
+//
+//        item.close();
+//
+//        return new Item(id, name, detail, price, image, categoryId);
+//    }
 
     public void addItemToCart(Long id) {
         ContentValues contentValues = new ContentValues();
@@ -119,22 +119,22 @@ public class DataBaseHelper {
         return categoryName;
     }
 
-    public List<Item> getItems(Long categoryId) {
-        Cursor itemsCursor = database.query(ItemTable.TABLE_NAME, ItemTable.ALL_COLUMNS, ItemTable.CATEGORY_ID + "=" + categoryId.intValue(), null, null, null, null, null);
-        ArrayList<Item> items = new ArrayList<>();
-        if(itemsCursor == null || itemsCursor.getCount() == 0) return items;
-
-        itemsCursor.moveToFirst();
-        do {
-            Long itemId = itemsCursor.getLong(itemsCursor.getColumnIndex(ItemTable.ID));
-            items.add(getItem(itemId));
-
-        } while(itemsCursor.moveToNext());
-
-
-        itemsCursor.close();
-        return items;
-    }
+//    public List<Item> getItems(Long categoryId) {
+//        Cursor itemsCursor = database.query(ItemTable.TABLE_NAME, ItemTable.ALL_COLUMNS, ItemTable.CATEGORY_ID + "=" + categoryId.intValue(), null, null, null, null, null);
+//        ArrayList<Item> items = new ArrayList<>();
+//        if(itemsCursor == null || itemsCursor.getCount() == 0) return items;
+//
+//        itemsCursor.moveToFirst();
+//        do {
+//            Long itemId = itemsCursor.getLong(itemsCursor.getColumnIndex(ItemTable.ID));
+//            items.add(getItem(itemId));
+//
+//        } while(itemsCursor.moveToNext());
+//
+//
+//        itemsCursor.close();
+//        return items;
+//    }
 
     public Cursor getItemsCursor(Long categoryId) {
         return database.query(ItemTable.TABLE_NAME, ItemTable.ALL_COLUMNS, ItemTable.CATEGORY_ID + "=" + categoryId.intValue(), null, null, null, null, null);
