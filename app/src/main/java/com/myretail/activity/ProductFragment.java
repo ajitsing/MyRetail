@@ -35,7 +35,7 @@ public class ProductFragment extends Fragment {
         String price = getArguments().getString(ITEM_PRICE);
 
         itemTextView.setText(itemName);
-        detailTextView.setText(detail);
+        detailTextView.setText("Details - " + detail);
         priceTextView.setText("Price - " + price + " ₹");
 
         byte[] bytes = Base64.decode(image, Base64.DEFAULT);
