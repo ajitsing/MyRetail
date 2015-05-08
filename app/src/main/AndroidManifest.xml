@@ -19,7 +19,7 @@
         </activity>
 
         <service
-            android:name="com.octo.android.robospice.JacksonSpringAndroidSpiceService"
+            android:name=".MyRetailSpiceService"
             android:exported="false"/>
     </application>
 

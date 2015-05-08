@@ -14,10 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.myretail.Models.Categories;
+import com.myretail.MyRetailSpiceService;
 import com.myretail.R;
 import com.myretail.adapter.CategoryAdapter;
 import com.myretail.request.CategoriesRequest;
-import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -26,7 +26,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
 public class NavigationDrawerFragment extends Fragment {
     private ListView drawerList;
     private DrawerLayout drawerLayout;
-    protected SpiceManager spiceManager = new SpiceManager(JacksonSpringAndroidSpiceService.class);
+    protected SpiceManager spiceManager = new SpiceManager(MyRetailSpiceService.class);
     private ArrayAdapter adapter;
 
     @Override

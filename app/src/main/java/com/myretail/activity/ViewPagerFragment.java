@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.myretail.Models.Category;
+import com.myretail.MyRetailSpiceService;
 import com.myretail.R;
 import com.myretail.adapter.ItemPagerAdapter;
 import com.myretail.request.CategoryRequest;
-import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
@@ -19,7 +19,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
 
 public class ViewPagerFragment extends Fragment {
     private long category;
-    private SpiceManager spiceManager = new SpiceManager(JacksonSpringAndroidSpiceService.class);
+    private SpiceManager spiceManager = new SpiceManager(MyRetailSpiceService.class);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class ViewPagerFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         CategoryRequest categoryRequest = new CategoryRequest(this.category);
-        spiceManager.execute(categoryRequest, null, DurationInMillis.ONE_HOUR, new RequestListener<Category>(){
+        spiceManager.execute(categoryRequest, categoryRequest.createCacheKey(), DurationInMillis.ONE_HOUR, new RequestListener<Category>(){
 
             @Override
             public void onRequestFailure(SpiceException spiceException) {

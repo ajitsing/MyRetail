@@ -18,4 +18,8 @@ public class CategoryRequest extends SpringAndroidSpiceRequest<Category> {
     public Category loadDataFromNetwork() throws Exception{
         return getRestTemplate().getForObject(REMOTE_SERVER_URL + "/categories/" + this.categoryId + ".json", Category.class);
     }
+
+    public String createCacheKey() {
+        return "category." + this.categoryId;
+    }
 }
