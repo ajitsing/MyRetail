@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.myretail.Models.Category;
 import com.myretail.MyRetailSpiceService;
@@ -20,6 +21,7 @@ import com.octo.android.robospice.request.listener.RequestListener;
 public class ViewPagerFragment extends Fragment {
     private long category;
     private SpiceManager spiceManager = new SpiceManager(MyRetailSpiceService.class);
+    private ProgressBar spinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class ViewPagerFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        spinner = (ProgressBar)getActivity().findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
         CategoryRequest categoryRequest = new CategoryRequest(this.category);
         spiceManager.execute(categoryRequest, categoryRequest.createCacheKey(), DurationInMillis.ONE_HOUR, new RequestListener<Category>(){
 
@@ -54,6 +58,7 @@ public class ViewPagerFragment extends Fragment {
                 ItemPagerAdapter pagerAdapter = new ItemPagerAdapter(getFragmentManager(), category.getItems());
                 ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
                 viewPager.setAdapter(pagerAdapter);
+                spinner.setVisibility(View.GONE);
             }
         });
     }
