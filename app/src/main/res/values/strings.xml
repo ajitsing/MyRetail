@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="price">Price - </string>
+    <string name="details">Details - </string>
+    <string name="currency"> ₹</string>
 </resources>
