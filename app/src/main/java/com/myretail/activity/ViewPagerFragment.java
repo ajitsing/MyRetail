@@ -7,15 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.myretail.Models.Categories;
 import com.myretail.Models.Category;
 import com.myretail.R;
-import com.myretail.adapter.CursorPagerAdapter;
-import com.myretail.db_helper.DataBaseHelper;
-import com.myretail.robospice.request.CategoryRequest;
+import com.myretail.adapter.ItemPagerAdapter;
+import com.myretail.request.CategoryRequest;
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.persistence.CacheManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
@@ -44,7 +41,6 @@ public class ViewPagerFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance(this.getActivity());
         CategoryRequest categoryRequest = new CategoryRequest(this.category);
         spiceManager.execute(categoryRequest, null, DurationInMillis.ONE_HOUR, new RequestListener<Category>(){
 
@@ -55,7 +51,7 @@ public class ViewPagerFragment extends Fragment {
 
             @Override
             public void onRequestSuccess(Category category) {
-                CursorPagerAdapter pagerAdapter = new CursorPagerAdapter(getFragmentManager(), category.getItems());
+                ItemPagerAdapter pagerAdapter = new ItemPagerAdapter(getFragmentManager(), category.getItems());
                 ViewPager viewPager = (ViewPager) getView().findViewById(R.id.pager);
                 viewPager.setAdapter(pagerAdapter);
             }

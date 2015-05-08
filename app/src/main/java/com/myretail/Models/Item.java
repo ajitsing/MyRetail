@@ -1,11 +1,7 @@
 package com.myretail.Models;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

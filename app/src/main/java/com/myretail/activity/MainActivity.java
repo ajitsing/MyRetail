@@ -9,8 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.myretail.R;
-import com.myretail.db_helper.DataBaseHelper;
-
 
 public class MainActivity extends FragmentActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -19,9 +17,6 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        DataBaseHelper.getInstance(this).setUpDB();
-
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.app_name, R.string.action_settings);

@@ -1,7 +1,9 @@
-package com.myretail.robospice.request;
+package com.myretail.request;
 
 import com.myretail.Models.Category;
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
+
+import static com.myretail.Constants.REMOTE_SERVER_URL;
 
 public class CategoryRequest extends SpringAndroidSpiceRequest<Category> {
 
@@ -14,6 +16,6 @@ public class CategoryRequest extends SpringAndroidSpiceRequest<Category> {
 
     @Override
     public Category loadDataFromNetwork() throws Exception{
-        return getRestTemplate().getForObject("https://enigmatic-coast-6264.herokuapp.com/categories/" + this.categoryId + ".json", Category.class);
+        return getRestTemplate().getForObject(REMOTE_SERVER_URL + "/categories/" + this.categoryId + ".json", Category.class);
     }
 }

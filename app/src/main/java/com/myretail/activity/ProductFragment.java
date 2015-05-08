@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import com.myretail.R;
 
-import static com.myretail.tables.ItemTable.*;
+import static com.myretail.Constants.ITEM_DETAIL;
+import static com.myretail.Constants.ITEM_IMAGE;
+import static com.myretail.Constants.ITEM_NAME;
+import static com.myretail.Constants.ITEM_PRICE;
 
 public class ProductFragment extends Fragment {
     @Override
@@ -26,10 +29,10 @@ public class ProductFragment extends Fragment {
         TextView priceTextView = (TextView) result.findViewById(R.id.price);
         ImageView imageView = (ImageView) result.findViewById(R.id.image);
 
-        String itemName = getArguments().getString(NAME);
-        String detail = getArguments().getString(DETAIL);
-        String image = getArguments().getString(IMAGE);
-        String price = getArguments().getString(PRICE);
+        String itemName = getArguments().getString(ITEM_NAME);
+        String detail = getArguments().getString(ITEM_DETAIL);
+        String image = getArguments().getString(ITEM_IMAGE);
+        String price = getArguments().getString(ITEM_PRICE);
 
         itemTextView.setText(itemName);
         detailTextView.setText(detail);

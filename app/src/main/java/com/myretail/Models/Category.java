@@ -10,12 +10,6 @@ public class Category {
     private String name;
     private List<Item> items;
 
-    public Category(Long id, String name, List<Item> items) {
-        this.id = id;
-        this.name = name;
-        this.items = items;
-    }
-
     public Category() {
     }
 

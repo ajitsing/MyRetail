@@ -14,11 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.myretail.Models.Categories;
-import com.myretail.Models.Category;
 import com.myretail.R;
 import com.myretail.adapter.CategoryAdapter;
-import com.myretail.db_helper.DataBaseHelper;
-import com.myretail.robospice.request.CategoriesRequest;
+import com.myretail.request.CategoriesRequest;
 import com.octo.android.robospice.JacksonSpringAndroidSpiceService;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
@@ -28,7 +26,6 @@ import com.octo.android.robospice.request.listener.RequestListener;
 public class NavigationDrawerFragment extends Fragment {
     private ListView drawerList;
     private DrawerLayout drawerLayout;
-    private DataBaseHelper dataBaseHelper;
     protected SpiceManager spiceManager = new SpiceManager(JacksonSpringAndroidSpiceService.class);
     private ArrayAdapter adapter;
 
@@ -52,9 +49,6 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        drawerList = (ListView) getActivity().findViewById(R.id.drawer_list);
-        dataBaseHelper = DataBaseHelper.getInstance(getActivity());
         fetchCategories();
     }
 
@@ -67,7 +61,8 @@ public class NavigationDrawerFragment extends Fragment {
             }
 
             @Override
-            public void onRequestSuccess(Categories categories) {
+            public void onRequestSuccess(final Categories categories) {
+                drawerList = (ListView) getActivity().findViewById(R.id.drawer_list);
                 adapter = new CategoryAdapter(getActivity(), categories);
                 drawerList.setAdapter(adapter);
                 drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
@@ -76,7 +71,8 @@ public class NavigationDrawerFragment extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         drawerList.setItemChecked(position, true);
-                        setDrawerTitle(dataBaseHelper.getCategoryName(id));
+                        String name = categories.get(position).getName();
+                        setDrawerTitle(name);
                         drawerLayout.closeDrawer(GravityCompat.START);
 
                         ViewPagerFragment fragment = new ViewPagerFragment();
