@@ -79,6 +79,7 @@ public class NavigationDrawerFragment extends Fragment {
                         fragment.setCategory(id);
 
                         getFragmentManager().beginTransaction()
+                                .setCustomAnimations(R.anim.enter, R.anim.exit)
                                 .replace(R.id.main_content, fragment)
                                 .commit();
 
